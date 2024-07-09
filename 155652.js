@@ -24,4 +24,4 @@ function solution(s, skip, index) {
 }
 
 const result = solution("aukks", "wbqd", 5);
-console.log(result); // Should print the transformed string according to the rules
+console.log(result);
