@@ -21,35 +21,24 @@ function validate(privacyDate, today, limit) {
 
     month += limit;
     day -= 1;
-    console.log(`1. privacy: ${year}.${month}.${day}`)
     if (day === 0) {
         day = DAYS_IN_MONTH;
         month--;
-        console.log(`2. privacy: ${year}.${month}.${day}`)
     }
 
     if (month > 12) {
         month = month % 12;
         year += 1;
-        console.log(`3. privacy: ${year}.${month}.${day}`)
     }
     if (month === 0) {
         month = 12;
         year -= 1;
-        console.log(`4. privacy: ${year}.${month}.${day}`)
     }
 
-    let validate = false;
-    console.log(`today: ${tYear}.${tMonth}.${tDay}, privacy: ${year}.${month}.${day}, limit: ${limit}`)
-    if (tYear < year) validate = true;
-    if (year === tYear && tMonth < month) validate = true;
-    if (year === tYear && tMonth === month && tDay < day) validate = true;
-
-    return validate;
+    return tYear < year || (tYear === year && tMonth < month) || (tYear === year && tMonth === month && tDay <= day);
 }
 
 const result = solution("2022.05.19",
     ["A 6", "B 12", "C 3"],
     ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]);
 
-console.log(result); // [1,3]
